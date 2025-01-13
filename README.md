@@ -62,7 +62,7 @@ known as molecular docking or pose prediction.
    cd /blue/groupname/gatorlink/...
    ```
 
-3. **Prepare JSON formatted post-data. **  
+3. **Prepare JSON formatted post-data**  
    This step requires being launched in the most common bash shell environment in Linux. Users can verify if the current session is bash by using the command echo $0.
    If not, run the command /bin/bash before this step.
    ```bash
