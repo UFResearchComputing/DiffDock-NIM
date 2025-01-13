@@ -124,7 +124,7 @@ known as molecular docking or pose prediction.
 
 In this example, we create a simple `bash` script to launch inference using two local files as input and dump the generated poses in the `output` folder.
 
-1. Create a new blank file in the same folder, name it as `diffdock.sh` and copy the content below into it.
+1. Create a new blank file in the same folder, name it as `diffdock.sh`, which already created for you in this repo.
   
 2. Make the script executable.
    ```bash
@@ -154,7 +154,7 @@ In this example, we create a simple `bash` script to launch inference using two 
 ### Run Inference for Batch-Docking
 DiffDock NIM allows for a **Batch-Docking** mode, which docks a group of ligand molecules against the same protein receptor through a single inference request if a multi-molecule SDF file is submitted in this request.
 Batch-docking mode is much more efficient than running separate inference requests. The example below illustrates batch-docking using a protein PDB file with five molecule SDF files downloaded from **RSCB**.
-1. Prepare the SDF input file with multiple ligand molecules. Create a new blank file, name it as `make-multiligand.sh`, and copy the content below into it.
+1. Prepare the SDF input file with multiple ligand molecules. Create a new blank file, name it as `make-multiligand.sh`, which already created for you in this repo.
 
 2. Run the commands below to generate the `multi_ligands.sdf` for input.
    ```bash
@@ -191,7 +191,7 @@ Batch-docking mode is much more efficient than running separate inference reques
 ### Batch-Docking using SMILES
 Besides the SDF format for ligand molecules, DiffDock also support **SMILES** text strings as the input. DiffDock uses **RDKit** to generate random molecular conformers from the SMILES information. 
 A plain text file can be used as the ligand input with multiple lines, each of which is a SMILES formula representing a molecule, to conduct batch-docking.
-1. Create a new blank file, name it as `ligands.txt` and copy the content below into it.
+1. Create a new blank file, name it as `ligands.txt`, which already created for you in this repo.
 
 2. Run the commands below to invoke the DiffDock model. The script generates an input JSON file and returns the inference result in JSON format in the file output.json.
    ```bash
