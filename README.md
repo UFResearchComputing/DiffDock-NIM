@@ -12,6 +12,9 @@ known as molecular docking or pose prediction.
 - Highly accurate and computationally efficient
 - Fast inference times and provides confidence estimates with high selective accuracy.
 
+<p align="center">
+  <img src="images/output.jpg" alt="Output">
+
 
 ## Prerequisites
 
