@@ -100,31 +100,7 @@ known as molecular docking or pose prediction.
 ## Dump Generated Poses
 
 1. A simple Python script provided in this section is used to dump the inference results (docked poses of ligands) into a folder named as output.
-   Create a new blank file, name it as dump_output.py and copy the content below into it.
-   ```python
-   import json
-   import os
-   import shutil
-
-   def dump_one(folder, ligand_positions, position_confidence):
-       os.makedirs(folder, exist_ok=True)
-
-       for i, c in enumerate(position_confidence):
-          with open('%s/rank%02d_confidence_%0.2f.sdf' % (folder, i+1, c), 'w') as f:
-              f.write(ligand_positions[i])
-
-   shutil.rmtree('output', ignore_errors=True)
-   os.makedirs('output', exist_ok=True)
-
-   with open('output.json') as f:
-       data = json.load(f)
-
-   if type(data['status']) == str:
-       dump_one('output', data['ligand_positions'], data['position_confidence'])
-   else:
-       for i in range(len(data['status'])):
-           dump_one('output/ligand%d' % (i+1), data['ligand_positions'][i], data['position_confidence'][i])
-   ```
+   Create a new blank file, name it as `dump_output.py` and copy the content below into it.
 
 2. Run the command below to launch the Python script.
    ```bash
@@ -146,36 +122,7 @@ known as molecular docking or pose prediction.
 In this example, we create a simple `bash` script to launch inference using two local files as input and dump the generated poses in the `output` folder.
 
 1. Create a new blank file in the same folder, name it as `diffdock.sh` and copy the content below into it.
-   ```bash
-   #!/bin/bash
-
-   # Script: diffdock.sh - Run inference using local files as input
-   # Usage: ./diffdock.sh [receptor].pdb [ligand].sdf
-
-   protein_file=$1
-   ligand_file=$2
-
-   protein_bytes=`grep -E ^ATOM $protein_file | sed -z 's/\n/\\\n/g'`
-   ligand_bytes=`sed -z 's/\n/\\\n/g' $ligand_file`
-   ligand_format=`basename $ligand_file | awk -F. '{print $NF}'`
-
-   echo "{
-   \"ligand\": \"${ligand_bytes}\",
-   \"ligand_file_type\": \"${ligand_format}\",
-   \"protein\": \"${protein_bytes}\",
-   \"num_poses\": 10,
-   \"time_divisions\": 20,
-   \"steps\": 18,
-   \"save_trajectory\": false,
-   \"is_staged\": false
-   }" > diffdock.json
-
-   curl --header "Content-Type: application/json" \
-      --request POST \
-      --data @diffdock.json \
-      --output output.json \
-      http://localhost:8000/molecular-docking/diffdock/generate
-   ```
+  
 2. Make the script executable.
    ```bash
    chmod +x diffdock.sh
@@ -205,26 +152,6 @@ In this example, we create a simple `bash` script to launch inference using two 
 DiffDock NIM allows for a **Batch-Docking** mode, which docks a group of ligand molecules against the same protein receptor through a single inference request if a multi-molecule SDF file is submitted in this request.
 Batch-docking mode is much more efficient than running separate inference requests. The example below illustrates batch-docking using a protein PDB file with five molecule SDF files downloaded from **RSCB**.
 1. Prepare the SDF input file with multiple ligand molecules. Create a new blank file, name it as `make-multiligand.sh`, and copy the content below into it.
-   ```bash
-   #!/bin/bash
-
-   # Script: make-multiligand.sh
-   # Usage: ./make-multiligand.sh [Ligand1_CCD_ID] [Ligand2_CCD_ID] ...
-   # Example: ./make-multiligand.sh COM Q4H QPK R4W SIN
-
-   ligand_files=""
-
-   for lig in $*
-   do
-       ligand_file=${lig}.sdf
-       echo "Download ligand file:${ligand_file}"
-       curl -o $ligand_file "https://files.rcsb.org/ligands/download/${lig}_ideal.sdf"
-       ligand_files="${ligand_files} ${ligand_file}" # there is a space between ${ligand_files} and ${ligand_file}
-   done
-
-   # Combine ligand files into a single SDF file
-   cat $ligand_files > multi_ligands.sdf
-   ```
 
 2. Run the commands below to generate the `multi_ligands.sdf` for input.
    ```bash
@@ -262,12 +189,6 @@ Batch-docking mode is much more efficient than running separate inference reques
 Besides the SDF format for ligand molecules, DiffDock also support **SMILES** text strings as the input. DiffDock uses **RDKit** to generate random molecular conformers from the SMILES information. 
 A plain text file can be used as the ligand input with multiple lines, each of which is a SMILES formula representing a molecule, to conduct batch-docking.
 1. Create a new blank file, name it as `ligands.txt` and copy the content below into it.
-   ```bash
-   Cc1cc(F)c(NC(=O)NCCC(C)(C)C)cc1Nc1ccc2ncn(C)c(=O)c2c1F
-   COc1cccc(NC(=O)c2ccc(C)c(Nc3nc(-c4cccnc4)nc4c3cnn4C)c2)c1
-   Cc1nn(C)c(C)c1CCOc1cc(F)ccc1-c1ccc2n[nH]c(CN(C)C)c2c1
-   Cc1c(C(=O)c2cccc3ccccc23)c2cccc3c2n1[C@H](CN1CCOCC1)CO3
-   ```
 
 2. Run the commands below to invoke the DiffDock model. The script generates an input JSON file and returns the inference result in JSON format in the file output.json.
    ```bash
