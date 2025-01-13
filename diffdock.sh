@@ -24,5 +24,5 @@ echo "{
 curl --header "Content-Type: application/json" \
    --request POST \
    --data @diffdock.json \
-   --output_bash output.json \
+   --output output.json \
    http://localhost:8000/molecular-docking/diffdock/generate
