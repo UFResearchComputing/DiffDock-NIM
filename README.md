@@ -252,6 +252,7 @@ Batch-docking mode is much more efficient than running separate inference reques
    rank02_confidence_-0.28.sdf  rank06_confidence_-0.55.sdf  rank10_confidence_-0.77.sdf
    rank03_confidence_-0.34.sdf  rank07_confidence_-0.56.sdf
    rank04_confidence_-0.49.sdf  rank08_confidence_-0.57.sdf
+   
    ...
    ```
 
@@ -287,6 +288,7 @@ A plain text file can be used as the ligand input with multiple lines, each of w
    rank02_confidence_-0.54.sdf  rank06_confidence_-1.29.sdf  rank10_confidence_-1.66.sdf
    rank03_confidence_-0.91.sdf  rank07_confidence_-1.38.sdf
    rank04_confidence_-1.03.sdf  rank08_confidence_-1.39.sdf
+   
    ...
    ```
 ---
