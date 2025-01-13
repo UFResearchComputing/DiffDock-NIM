@@ -38,10 +38,10 @@ known as molecular docking or pose prediction.
    
 2. Start a terminal and run the following commands:
    ```bash
-   mkdir -p /blue/groupname/gatorlink/.cache/nim  # Run only the first time
-   export LOCAL_NIM_CACHE=/blue/groupname/gatorlink/.cache/nim
-   mkdir -p /blue/groupname/gatorlink/.cache/nim/workspace # Run only the first time
-   export LOCAL_WORKSPACE=/blue/groupname/gatorlink/.cache/nim/workspace
+   mkdir -p /blue/groupname/gatorlink/.cache/nim/diffdock  # Run only the first time
+   export LOCAL_NIM_CACHE=/blue/groupname/gatorlink/.cache/nim/diffdock
+   mkdir -p /blue/groupname/gatorlink/.cache/nim/diffdock/workspace # Run only the first time
+   export LOCAL_WORKSPACE=/blue/groupname/gatorlink/.cache/nim/diffdock/workspace
    ml diffdock-nim
    diffdock
    start_server
@@ -224,10 +224,9 @@ A plain text file can be used as the ligand input with multiple lines, each of w
 To stop the NIM service, simply close the terminal window.
 
 ### Important Note
-It is recommended to **clean your cache and workspace files** every time you stop the server to ensure it won't affect your next run. You can do this by removing the cache directory:
+It is recommended to **clean your cache files** every time you stop the server to ensure it won't affect your next run. You can do this by removing the cache directory:
 ```bash
-rm -r /blue/groupname/gatorlink/.cache/nim/ngc
-rm -rf /blue/groupname/gatorlink/.cache/nim/workspace/*
+rm -rf /blue/groupname/gatorlink/.cache/nim/diffdock/*
 ```
 
 ---
