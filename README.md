@@ -103,7 +103,7 @@ known as molecular docking or pose prediction.
 ### Dump Generated Poses
 
 1. A simple Python script provided in this section is used to dump the inference results (docked poses of ligands) into a folder named as output.
-   Create a new blank file, name it as [dump_output.py](dump_output.py) and copy the content below into it.
+   Create a new blank file, name it as [dump_output.py](dump_output.py).
 
 2. Run the command below to launch the Python script.
    ```bash
