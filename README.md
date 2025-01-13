@@ -226,7 +226,8 @@ To stop the NIM service, simply close the terminal window.
 ### Important Note
 It is recommended to **clean your cache files** every time you stop the server to ensure it won't affect your next run. You can do this by removing the cache directory:
 ```bash
-rm -rf /blue/groupname/gatorlink/.cache/nim/diffdock/*
+rm -r /blue/groupname/gatorlink/.cache/nim/diffdock/ngc
+rm -rf /blue/groupname/gatorlink/.cache/nim/diffdock/workspace/*
 ```
 
 ---
