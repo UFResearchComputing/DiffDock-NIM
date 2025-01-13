@@ -219,7 +219,7 @@ Batch-docking mode is much more efficient than running separate inference reques
        ligand_file=${lig}.sdf
        echo "Download ligand file:${ligand_file}"
        curl -o $ligand_file "https://files.rcsb.org/ligands/download/${lig}_ideal.sdf"
-       ligand_files="${ligand_files}${ligand_file}"
+       ligand_files="${ligand_files} ${ligand_file}" # there is a space between ${ligand_files} and ${ligand_file}
    done
 
    # Combine ligand files into a single SDF file
