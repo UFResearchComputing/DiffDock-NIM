@@ -235,10 +235,10 @@ rm -rf /blue/groupname/gatorlink/.cache/nim/diffdock/workspace/*
 ## Another way to run DiffDock NIM on HPG
 
 1. **Submit a SLURM batch job**  
-   Use `sbatch` to start the NIM server with GPU resources, and record the name of the node where the server is running.
+   Use `sbatch` to start the NIM service with GPU resources, and record the name of the node where the service is running.
 
 2. **Open a terminal to run inference**  
-   Start an SSH terminal on the same node as the server to run inference.
+   Start an SSH terminal on the same node as the service to run inference.
    ```bash
    ssh node_name
    ```
