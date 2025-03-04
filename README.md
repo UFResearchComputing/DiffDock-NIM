@@ -28,7 +28,7 @@ known as molecular docking or pose prediction.
 
 ## Launch DiffDock on HPG
 
-1. Go to [OOD](https://ood.rc.ufl.edu/) and launch the Hipergator Desktop.
+1. Go to [OOD](https://ood.rc.ufl.edu/) and launch the HiPerGator Desktop.
   <p align="center">
   <img src="images/desktop1.png" alt="Hipergator_Desktop_1" height="350" style="margin-right: 50px;">
   <img src="images/desktop2.png" alt="Hipergator_Desktop_2" height="350">
